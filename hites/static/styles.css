@@ -1,0 +1,32 @@
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td {
+    font-size: 12;
+}
+
+td.cal-day {
+    height: 50;
+    background: #F5F5F5;
+}
+
+td.cal-notmonth {
+    height: 50;
+    background: #CACACA;
+}
+
+div.cal-notmonth {
+    height: 14;
+    background: #BCC6CF;
+}
+
+div.cal-date {
+    height: 14;
+    background: #C2D2E0;
+}
+
+div.cal-display {
+    height: 36;
+}
