@@ -110,7 +110,12 @@ function renderCalendar(div) {
             date.align = 'right';
             var display = document.createElement('DIV');
             display.setAttribute('class', 'cal-display');
-            if (indexDate.getMonth() == MONTH) {
+            if (indexDate.getFullYear() == TODAY.getFullYear() 
+                && indexDate.getMonth() == TODAY.getMonth()
+                && indexDate.getDate() == TODAY.getDate()) {
+                cell.setAttribute('class', 'cal-today');
+                date.setAttribute('class', 'cal-todate');
+            } else if (indexDate.getMonth() == MONTH) {
                 cell.setAttribute('class', 'cal-day');
                 date.setAttribute('class', 'cal-date');
             } else {

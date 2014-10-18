@@ -7,6 +7,12 @@ td {
     font-size: 12;
 }
 
+td.cal-today {
+    height: 50;
+    background: #F5F5F5;
+    border: 2px solid black;
+}
+
 td.cal-day {
     height: 50;
     background: #F5F5F5;
@@ -25,6 +31,11 @@ div.cal-notmonth {
 div.cal-date {
     height: 14;
     background: #C2D2E0;
+}
+
+div.cal-todate {
+    height: 14;
+    background: #CACACA;
 }
 
 div.cal-display {
