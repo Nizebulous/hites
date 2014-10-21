@@ -28,6 +28,9 @@ def deploy():
         run('git fetch origin')
         run('git checkout master')
         run('git pull --rebase origin master')
+    with cd(HITES_REPO_DIR):
+        with run('source %s/bin/activate' % PROJECT_DIR):
+            run('pip install -r requirements.txt')
     with cd(PROJECT_DIR):
         run('ln -sf %s/hites' % (HITES_REPO_DIR))
         run('touch tmp/restart.txt')
