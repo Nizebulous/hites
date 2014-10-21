@@ -21,20 +21,23 @@ DAYS = [
     "Friday",
     "Saturday"
 ];
-TURNS = [
-    'Natalia & Zafirah',
-    'Natalia & Kalil',
-    'Zafirah & Ilori',
-    'Zafirah & Kalil',
-    'Ilori & Natalia',
-    'Ilori & Kalil'
-];
 
 TODAY = new Date();
 YEAR = TODAY.getFullYear();
 MONTH = TODAY.getMonth();
 DIV = document.getElementById('cal-table');
 ANCHOR = new Date(2014, 8, 3);
+
+function getMonthInfo(year, month) {
+    var url = window.location.protocol + "//" + window.location.host + "/woodworking/" + year + "/" + month + "/events";
+    var representationOfDesiredState = "The cheese is old and moldy, where is the bathroom?";
+    var client = new XMLHttpRequest();
+    client.open("GET", url, false);
+    client.send(null);
+    if (client.status != 200)
+        alert("The request did not succeed!\n\nThe response status was: " + client.status + " " + client.statusText + ".");
+    return JSON.parse(client.responseText);
+}
 
 function weekDiff(date1, date2) {
 	// The number of milliseconds in one week
@@ -89,6 +92,8 @@ function renderCalendar(div) {
     headerTable.appendChild(createNavRow(YEAR, 'navYear'));
     headerTable.appendChild(createNavRow(MONTHS[MONTH], 'navMonth'));
 
+    date_info = getMonthInfo(YEAR, MONTH + 1);
+
     var table = document.createElement('TABLE');
     table.align = 'center';
     // Days of the week
@@ -122,8 +127,8 @@ function renderCalendar(div) {
                 cell.setAttribute('class', 'cal-notmonth')
                 date.setAttribute('class', 'cal-notmonth');
             }
-            if (i == 3) {
-                display.innerHTML = TURNS[mod(weekDiff(indexDate, ANCHOR), TURNS.length)]
+            if (indexDate.getMonth() == MONTH && indexDate.getDate() in date_info) {
+                display.innerHTML = date_info[indexDate.getDate()];
             }
             date.innerHTML = indexDate.getDate();
             cell.appendChild(date);

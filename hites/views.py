@@ -29,10 +29,10 @@ def woodworking_month_events(year, month):
     gen_point = AutoGenPoint.query.filter(
         AutoGenPoint.date < first_day
     ).order_by(AutoGenPoint.date.desc()).first()
-    if gen_point.point_type == 'start':
+    if gen_point and gen_point.point_type == 'start':
         anchor = gen_point.date
         anchor_index = gen_point.pairing_id - 1
-    elif gen_point.point_type == 'stop':
+    elif not gen_point or gen_point.point_type == 'stop':
         anchor = None
         anchor_index = None
     else:
