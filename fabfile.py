@@ -1,6 +1,7 @@
+from fabric.api import cd
 from fabric.api import run
 from fabric.api import env
-from fabric.api import cd
+from fabric.api import prefix
 from fabric.contrib.files import exists
 
 
@@ -29,7 +30,7 @@ def deploy():
         run('git checkout master')
         run('git pull --rebase origin master')
     with cd(HITES_REPO_DIR):
-        with run('source %s/bin/activate' % PROJECT_DIR):
+        with prefix('source %s/bin/activate' % PROJECT_DIR):
             run('pip install -r requirements.txt')
     with cd(PROJECT_DIR):
         run('ln -sf %s/hites' % (HITES_REPO_DIR))
