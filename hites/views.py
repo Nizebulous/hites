@@ -59,7 +59,7 @@ def woodworking_month_events(year, month):
         if index_date.day in date_exceptions:
             pairing = date_exceptions[index_date.day]
             if pairing:
-                dates[index_date.day] = '%s & %s' % (
+                dates[index_date.day] = 'MODIFIED: %s & %s' % (
                     pairing.participant_one.name,
                     pairing.participant_two.name
                 )
