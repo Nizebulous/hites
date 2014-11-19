@@ -19,8 +19,8 @@ if 'WSGI_ENV' in os.environ and os.environ['WSGI_ENV'] == 'production':
     }
 else:
     db_config = {
-        'user': 'root',
-        'host': '127.0.0.1',
+        'user': 'root:password',
+        'host': 'db',
         'db': 'woodworking_calendar'
     }
 db_uri = 'mysql://%(user)s@%(host)s/%(db)s' % db_config
