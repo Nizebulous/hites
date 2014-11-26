@@ -1,7 +1,7 @@
+import sys
 import requests
 
 
-TO = ['nizebulous@gmail.com']
 SUBJECT = "Wood Working This Week"
 
 
@@ -11,7 +11,7 @@ def send_woodworking_email():
     notification email
     """
     params = {
-        'to': TO,
+        'to': sys.argv[1:],
         'subject': SUBJECT
     }
     response = requests.get("http://hites.org/woodworking/email_events", params=params)

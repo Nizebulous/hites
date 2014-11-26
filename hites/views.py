@@ -54,7 +54,7 @@ def send_woodworking_email():
             events.append(index_date.strftime('%A %m/%d:\t') + ww_events[index_date])
         index_date += timedelta(days=1)
     if events:
-        message = "Wood Working sessions for the week: \n" + "\n".join(events)
+        message = "Hey Guys!,\n\nWood Working sessions for the week: \n\n" + "\n".join(events)
         sendmail(recipients, subject, message)
     return jsonify({"error": 0})
 
