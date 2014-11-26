@@ -58,11 +58,11 @@ class WoodWorkingEventBank:
         generated_dates = {}
         # Need to load the first gen point (before first_day)
         gen_point = AutoGenPoint.query.filter(
-            AutoGenPoint.date < self.first_day
+            AutoGenPoint.date <= self.first_day
         ).order_by(AutoGenPoint.date.desc()).first()
         additional_gen_points = [
             point for point in AutoGenPoint.query.filter(
-                AutoGenPoint.date >= self.first_day
+                AutoGenPoint.date > self.first_day
             ).filter(
                 AutoGenPoint.date <= self.last_day
             ).all()
