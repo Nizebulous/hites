@@ -2,9 +2,10 @@ from subprocess import Popen, PIPE
 from email.mime.text import MIMEText
 
 
-def sendmail(sender, recipients, subject, message):
+def sendmail(recipients, subject, message, sender=None):
     msg = MIMEText(message)
-    msg["From"] = sender
+    if sender:
+        msg["From"] = sender
     msg["To"] = ",".join(recipients)
     msg["Subject"] = subject
     p = Popen(["/usr/sbin/sendmail", "-t"], stdin=PIPE)

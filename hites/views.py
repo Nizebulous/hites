@@ -42,7 +42,6 @@ def send_woodworking_email():
     Find the next woodworking session and if it is this week, then send a
     notification email
     """
-    sender = request.args.get('from')
     recipients = request.args.getlist('to')
     subject = request.args.get('subject', "Wood Working This Week")
     first_day = date.today()
@@ -57,7 +56,7 @@ def send_woodworking_email():
         index_date += timedelta(days=1)
     if events:
         message = "Wood Working sessions for the week: \n" + "\n".join(events)
-        sendmail(sender, recipients, subject, message)
+        sendmail(recipients, subject, message)
     return jsonify({"error": 0})
 
 
