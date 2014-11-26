@@ -55,21 +55,22 @@ class WoodWorkingEventBank:
         return self.__dict__['_generated_dates']
 
     def _get_generated_dates(self):
+        # First Wednesday after the first day
+        gen_date = self.first_day + timedelta(days=((2 - self.first_day.weekday()) % 7))
+
         generated_dates = {}
         # Need to load the first gen point (before first_day)
         gen_point = AutoGenPoint.query.filter(
-            AutoGenPoint.date <= self.first_day
+            AutoGenPoint.date <= gen_date
         ).order_by(AutoGenPoint.date.desc()).first()
         additional_gen_points = [
             point for point in AutoGenPoint.query.filter(
-                AutoGenPoint.date > self.first_day
+                AutoGenPoint.date > gen_date
             ).filter(
                 AutoGenPoint.date <= self.last_day
             ).all()
         ]
 
-        # First Wednesday after the first day
-        gen_date = self.first_day + timedelta(days=((2 - self.first_day.weekday()) % 7))
         gp_index = 0
         while gen_date <= self.last_day:
             if gen_point.point_type == 'start':
