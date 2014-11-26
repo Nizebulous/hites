@@ -51,8 +51,7 @@ def send_woodworking_email():
     events = []
     while (index_date < last_day):
         if index_date in ww_events and ww_events[index_date] != "SKIPPED":
-            events.append(ww_events[index_date])
-            break
+            events.append(index_date.strftime('%A %m/%d:\t') + ww_events[index_date])
         index_date += timedelta(days=1)
     if events:
         message = "Wood Working sessions for the week: \n" + "\n".join(events)
